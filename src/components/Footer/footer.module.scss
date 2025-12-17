@@ -1,4 +1,4 @@
-@import "../../style/vars.scss";
+@import "@/style/vars.scss";
 .footer {
   background-color: $textColor;
   color: $accentTextColor;
@@ -11,7 +11,7 @@
       rgba(0, 0, 0, 0.55) 90%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url("../../assets/footer/fastfood-footer.webp");
+    url("@/assets/footer/fastfood-footer.webp");
   background-size: cover;
   background-position: right;
   @media (max-width: 768px) {
@@ -61,7 +61,7 @@
         .footer-phone {
           .footer-content {
             &-phone {
-              background-image: url("../../assets/icons/phone.png");
+              background-image: url("@/assets/icons/phone.png");
               background-size: contain;
               width: 20px;
               height: 20px;

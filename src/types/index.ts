@@ -30,12 +30,6 @@ export type RegFormType = {
   promo: boolean | undefined;
 };
 
-export type UploadType = {
-  status: boolean;
-  setStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  dataKeys: string[] | null;
-};
-
 export type ModalFormType = {
   address: string;
   delivery: string;

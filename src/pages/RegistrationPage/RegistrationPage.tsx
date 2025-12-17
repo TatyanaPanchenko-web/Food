@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Registration from "../../components/Registration/Registration";
-import SuccessRegistration from "../../components/SuccessRegistration/SuccessRegistration";
+import Registration from "@/components/Registration/Registration";
+import SuccessRegistration from "@/components/SuccessRegistration/SuccessRegistration";
 import style from "./registrationPage.module.scss";
 
 type RegistrationPagePropsType = {
- setShowHeader: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowHeader: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function RegistrationPage({
@@ -16,7 +16,7 @@ export default function RegistrationPage({
     setShowHeader(false);
     return () => setShowHeader(true);
   }, []);
- 
+
   return (
     <>
       {!regdata ? (

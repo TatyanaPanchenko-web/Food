@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Autorization from "../../components/Autorization/Autorization";
+import Autorization from "@/components/Autorization/Autorization";
 import style from "./authorizationPage.module.scss";
 
 type AuthorizationPagePropsType = {

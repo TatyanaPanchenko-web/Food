@@ -1,4 +1,4 @@
-@import "../../style/vars.scss";
+@import "@/style/vars.scss";
 .meal-menu-item {
   background-color: $accentTextColor;
   border-radius: 18px;
@@ -68,8 +68,7 @@
   }
 
   .meal-menu-btn {
-     transition: all 0.8s linear;
+    transition: all 0.8s linear;
     @include btnStyle;
-    
   }
 }

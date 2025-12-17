@@ -1,5 +1,8 @@
-import { updateCart, changeItemCart, deleteItemCart } from "../services/FB";
-import { DataProductsType, UploadType } from "../types/index";
+import { updateCart, changeItemCart, deleteItemCart } from "@/services/FB";
+import shopStore from "@/store/shopStore";
+import { DataProductsType, UploadType } from "@/types/index";
+
+const { changeUpload } = shopStore;
 
 export function addItemCart(
   item: DataProductsType,
@@ -26,12 +29,12 @@ export function addItemCart(
       } else {
         localStorage.setItem("cart", JSON.stringify([fullItem]));
       }
-      upload.setStatus((prev) => !prev);
+      changeUpload();
       return;
     }
 
     updateCart(fullItem, uid).then(() => {
-      upload.setStatus((prev) => !prev);
+      changeUpload();
     });
     return;
   }
@@ -47,13 +50,13 @@ export function addItemCart(
       ];
       localStorage.setItem("cart", JSON.stringify(newCartArr));
     }
-    upload.setStatus((prev) => !prev);
+    changeUpload();
     return;
   }
   if (upload.dataKeys) {
     if (indexElement !== undefined && upload.dataKeys[indexElement]) {
       changeItemCart(newItem, uid, upload.dataKeys[indexElement]).then(() => {
-        upload.setStatus((prev) => !prev);
+        changeUpload();
         return;
       });
     }
@@ -90,7 +93,7 @@ export function changeCountCartItem(
 
     if (!checkedItem) return;
 
-    let newItem:DataProductsType;
+    let newItem: DataProductsType;
     if (flag) {
       newItem = { ...checkedItem, count: item.count + 1 };
     } else {
@@ -102,7 +105,7 @@ export function changeCountCartItem(
             ...cartElements.slice(localIndexElement + 1),
           ];
           localStorage.setItem("cart", JSON.stringify(newCartArr));
-          upload.setStatus((prev) => !prev);
+          changeUpload();
           return;
         }
       }
@@ -114,13 +117,14 @@ export function changeCountCartItem(
         ...cartElements.slice(localIndexElement + 1),
       ];
       localStorage.setItem("cart", JSON.stringify(newCartArr));
-      upload.setStatus((prev) => !prev);
+      changeUpload();
       return;
     }
     return;
   }
 
   let newItem;
+
   if (flag) {
     newItem = { ...item, count: item.count + 1 };
   } else {
@@ -129,18 +133,17 @@ export function changeCountCartItem(
       if (upload.dataKeys) {
         if (upload.dataKeys[indexElement]) {
           deleteItemCart(uid, upload.dataKeys[indexElement]).then(() =>
-            upload.setStatus((prev) => !prev)
+            changeUpload()
           );
         }
       }
-
       return null;
     }
   }
   if (upload.dataKeys) {
     if (upload.dataKeys[indexElement]) {
       changeItemCart(newItem, uid, upload.dataKeys[indexElement]).then(() =>
-        upload.setStatus((prev) => !prev)
+        changeUpload()
       );
     }
   }

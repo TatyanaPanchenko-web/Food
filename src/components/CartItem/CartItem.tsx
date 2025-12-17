@@ -1,22 +1,20 @@
-import { changeCountCartItem } from "../../common/cartHandler";
-import { DataProductsType, UploadType } from "../../types/index";
+import { changeCountCartItem } from "@/common/cartHandler";
+import shopStore from "@/store/shopStore";
+import { DataProductsType } from "@/types/index";
 import style from "./cartItem.module.scss";
 
 type CartItemPropsType = {
-  upload: UploadType;
   item: DataProductsType;
   indexElement: number;
   userUid: string | undefined;
-  cartElements: DataProductsType[];
 };
 
 export default function CartItem({
-  upload,
   item,
   indexElement,
   userUid,
-  cartElements,
 }: CartItemPropsType) {
+  const { cartElements, upload } = shopStore;
   const { name, weight, price, count, imgUrl } = item;
 
   return (
@@ -35,7 +33,7 @@ export default function CartItem({
         <button
           onClick={() => {
             changeCountCartItem(
-              cartElements,
+              cartElements.data,
               false,
               userUid,
               item,
@@ -50,7 +48,7 @@ export default function CartItem({
         <button
           onClick={() => {
             changeCountCartItem(
-              cartElements,
+              cartElements.data,
               true,
               userUid,
               item,

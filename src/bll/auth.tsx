@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import {
-  getData,
- } from "../services/FB";
-import { UserInfoType } from "../types/index";
+import { getData } from "@/services/FB";
+import { UserInfoType } from "@/types/index";
 
 export const getAuthData = () => {
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);

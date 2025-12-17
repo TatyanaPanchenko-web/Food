@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/icons/logo-white.svg";
-import telegram from "../../assets/icons/tg.png";
-import vk from "../../assets/icons/vk.png";
+import logo from "@/assets/icons/logo-white.svg";
+import telegram from "@/assets/icons/tg.png";
+import vk from "@/assets/icons/vk.png";
 import style from "./footer.module.scss";
 
 export default function Footer() {

@@ -1,31 +1,24 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMask } from "@react-input/mask";
-import { addOrderData } from "../../services/FB";
-import { deleteAllCart } from "../../services/FB";
-import {
-  UserInfoType,
-  DataProductsType,
-  UploadType,
-  ModalFormType,
-} from "../../types/index";
+import { addOrderData } from "@/services/FB";
+import { deleteAllCart } from "@/services/FB";
+import shopStore from "@/store/shopStore";
+import { UserInfoType, ModalFormType } from "@/types/index";
 import style from "./modalDelivery.module.scss";
 
 type ModalDeliveryPropsType = {
   setModalDeliveryStatus: React.Dispatch<React.SetStateAction<boolean>>;
   setSubmittedSuccess: React.Dispatch<React.SetStateAction<boolean>>;
-  cartElements: DataProductsType[];
   dataAuth: UserInfoType;
-  upload: UploadType;
 };
 
 export default function ModalDelivery({
   setModalDeliveryStatus,
   setSubmittedSuccess,
-  cartElements,
   dataAuth,
-  upload,
 }: ModalDeliveryPropsType) {
+  const { cartElements, changeUpload } = shopStore;
   const [choiceDelivery, setChoiceDelivery] = useState("carrier");
 
   const {
@@ -49,8 +42,8 @@ export default function ModalDelivery({
 
   const userUIdFB: string = dataAuth.uid;
   const onSubmit: SubmitHandler<ModalFormType> = (data) => {
-    addOrderData(data, cartElements, userUIdFB);
-    upload.setStatus((prev: boolean) => !prev);
+    addOrderData(data, cartElements.data, userUIdFB);
+    changeUpload();
     deleteAllCart(userUIdFB);
     setModalDeliveryStatus(false);
     setSubmittedSuccess(true);

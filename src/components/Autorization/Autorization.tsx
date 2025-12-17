@@ -9,9 +9,9 @@ import {
   User,
   UserCredential,
 } from "firebase/auth";
-import { addRegData } from "../../services/FB";
-import { dataAuthType } from "../../types/index";
-import iconGoogle from "../../assets/icons/google.png";
+import { addRegData } from "@/services/FB";
+import { dataAuthType } from "@/types/index";
+import iconGoogle from "@/assets/icons/google.png";
 import style from "./autorization.module.scss";
 
 type errAuthType = {

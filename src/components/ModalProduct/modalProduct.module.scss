@@ -1,4 +1,4 @@
-@import "../../style/vars.scss";
+@import "@/style/vars.scss";
 
 .modal {
   position: fixed;
@@ -26,7 +26,7 @@
       height: 24px;
       top: 24px;
       right: 24px;
-      background-image: url("../../assets/icons/close.svg");
+      background-image: url("@/assets/icons/close.svg");
       cursor: pointer;
     }
     .modal-title {
@@ -80,17 +80,17 @@
           $accentBgColor,
           $secondaryaccentHoverColor
         );
-          @media (max-width: 576px) {
-           max-width: 130px;
-          }
+        @media (max-width: 576px) {
+          max-width: 130px;
+        }
       }
       .modal-total {
         width: 100%;
         display: flex;
         justify-content: space-between;
-         @media (max-width: 576px) {
+        @media (max-width: 576px) {
           align-items: center;
-          }
+        }
         .modal-counter {
           background-color: $btnColor;
           border-radius: 12px;

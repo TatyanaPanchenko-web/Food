@@ -13,7 +13,7 @@ import type {
   DataProductsType,
   RegFormType,
   ModalFormType,
-} from "../types/index";
+} from "@/types/index";
 import { User } from "firebase/auth";
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);

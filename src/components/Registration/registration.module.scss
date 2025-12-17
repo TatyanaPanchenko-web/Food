@@ -1,4 +1,4 @@
-@import "../../style/vars.scss";
+@import "@/style/vars.scss";
 
 .registration-wrapper {
   background-color: $bgColor;
@@ -71,7 +71,7 @@
       }
     }
     .errorField {
-       @extend %errorField;
+      @extend %errorField;
     }
   }
 }

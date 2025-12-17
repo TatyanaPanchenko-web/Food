@@ -1,26 +1,22 @@
 import { useState } from "react";
-import { addItemCart } from "../../common/cartHandler";
-import ModalProduct from "../../components/ModalProduct/ModalProduct";
-import { DataProductsType, UploadType, NavItemType } from "../../types/index";
+import { addItemCart } from "@/common/cartHandler";
+import ModalProduct from "@/components/ModalProduct/ModalProduct";
+import shopStore from "@/store/shopStore";
+import { DataProductsType, UploadType, NavItemType } from "@/types/index";
 import style from "./productItem.module.scss";
 
 type ProductItemPropsType = {
   item: DataProductsType;
   index: number;
-  upload: UploadType;
-  cartElements: DataProductsType[];
   userUid: string | undefined;
-  activeTab: NavItemType;
 };
 
 export default function ProductItem({
   item,
   index,
-  upload,
-  cartElements,
   userUid,
-  activeTab,
 }: ProductItemPropsType) {
+  const { cartElements, upload, activeTab } = shopStore;
   const [modalProductStatus, setModalProductStatus] = useState<boolean>(false);
   const imgUrl = `products/${activeTab.product_name}/${activeTab.product_name}_${index}.webp`;
   const { name, weight, price, promotion } = item;
@@ -47,7 +43,7 @@ export default function ProductItem({
         </div>
         <button
           onClick={() =>
-            addItemCart(item, userUid, cartElements, upload, imgUrl)
+            addItemCart(item, userUid, cartElements.data, upload, imgUrl)
           }
           className={style["meal-menu-btn"]}
         >
@@ -57,8 +53,6 @@ export default function ProductItem({
           <ModalProduct
             item={item}
             imgUrl={imgUrl}
-            upload={upload}
-            cartElements={cartElements}
             setModalProductStatus={setModalProductStatus}
             userUid={userUid}
           />

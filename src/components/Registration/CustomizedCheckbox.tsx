@@ -1,4 +1,4 @@
-import React, { ForwardedRef } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -6,6 +6,7 @@ import Checkbox, { CheckboxProps } from "@mui/material/Checkbox";
 
 interface CustomizedCheckboxProps extends CheckboxProps {
   label: string;
+  ref: React.Ref<HTMLButtonElement>;
 }
 
 const BpIcon = styled("span")(({ theme }) => ({
@@ -61,36 +62,39 @@ const BpCheckedIcon = styled(BpIcon)({
     backgroundColor: "#06cf10",
   },
 });
-const BpCheckbox = React.forwardRef<HTMLInputElement, CustomizedCheckboxProps>(
-  ({ label, ...props }, ref) => (
-    <FormGroup>
-      <FormControlLabel
-        ref={ref}
-        label={label}
-        control={
-          <Checkbox
-            sx={{ "&:hover": { bgcolor: "transparent" } }}
-            disableRipple
-            color="default"
-            checkedIcon={<BpCheckedIcon />}
-            icon={<BpIcon />}
-            {...props}
-          />
-        }
-      />
-    </FormGroup>
-  )
+const BpCheckbox: React.FC<CustomizedCheckboxProps> = ({
+  label,
+  ref,
+  ...props
+}) => (
+  <FormGroup>
+    <FormControlLabel
+      ref={ref}
+      label={label}
+      control={
+        <Checkbox
+          sx={{ "&:hover": { bgcolor: "transparent" } }}
+          disableRipple
+          color="default"
+          checkedIcon={<BpCheckedIcon />}
+          icon={<BpIcon />}
+          {...props}
+        />
+      }
+    />
+  </FormGroup>
 );
 
-const CustomizedCheckbox = React.forwardRef<
-  HTMLInputElement,
-  CustomizedCheckboxProps
->(({ label, ...props }, ref: ForwardedRef<HTMLInputElement>) => {
+const CustomizedCheckbox: React.FC<CustomizedCheckboxProps> = ({
+  label,
+  ref,
+  ...props
+}) => {
   return (
     <div>
       <BpCheckbox ref={ref} label={label} {...props} />
     </div>
   );
-});
+};
 
 export default CustomizedCheckbox;

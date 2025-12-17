@@ -1,9 +1,23 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import { analyzer } from "vite-bundle-analyzer";
+import observerPlugin from "mobx-react-observer/babel-plugin";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+// import { analyzer } from "vite-bundle-analyzer";
 
 export default defineConfig({
-  plugins: [react(), analyzer()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          observerPlugin(
+            // optional
+            { exclude: ["src/ui-components/**"] }
+          ),
+        ],
+      },
+    }),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
@@ -34,6 +48,12 @@ export default defineConfig({
           }
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "~": path.resolve(__dirname, "./assets"),
     },
   },
 });

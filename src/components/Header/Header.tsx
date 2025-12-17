@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getAuthData } from "../../bll/auth";
-import logo from "../../assets/icons/logo.svg";
-import iconUser from "../../assets/icons/user.svg";
+import { getAuthData } from "@/bll/auth";
+import logo from "@/assets/icons/logo.svg";
+import iconUser from "@/assets/icons/user.svg";
 import style from "./header.module.scss";
 
 export default function Header() {
   const [isOpenInfo, setIsOpenInfo] = useState<boolean>(false);
 
   const ref = useRef<HTMLDivElement>(null);
-  
+
   const { userInfo, userSignOut } = getAuthData();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Header() {
     };
   }, []);
 
-  const handleClick = (e:MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     if (ref.current && !ref?.current?.contains(e.target as Node)) {
       setIsOpenInfo(false);
     }

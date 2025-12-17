@@ -7,8 +7,8 @@ import {
   UserCredential,
 } from "firebase/auth";
 import CustomizedCheckbox from "./CustomizedCheckbox";
-import { addRegData } from "../../services/FB";
-import type { RegFormType } from "../../types/index";
+import { addRegData } from "@/services/FB";
+import type { RegFormType } from "@/types/index";
 import style from "./registration.module.scss";
 
 type RegistrationPropsType = {

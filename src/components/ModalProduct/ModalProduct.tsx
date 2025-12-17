@@ -1,25 +1,23 @@
-import { changeCountCartItem } from "../../common/cartHandler";
-import { addItemCart } from "../../common/cartHandler";
-import { DataProductsType, UploadType } from "../../types/index";
+import { changeCountCartItem } from "@/common/cartHandler";
+import { addItemCart } from "@/common/cartHandler";
+import shopStore from "@/store/shopStore";
+import { DataProductsType } from "@/types/index";
 import style from "./modalProduct.module.scss";
 
 type ModalProductPropsType = {
   item: DataProductsType;
   imgUrl: string;
-  upload: UploadType;
-  cartElements: DataProductsType[];
-  setModalProductStatus:React.Dispatch<React.SetStateAction<boolean>>;
+  setModalProductStatus: React.Dispatch<React.SetStateAction<boolean>>;
   userUid: string | undefined;
 };
 
 export default function ModalProduct({
   item,
   imgUrl,
-  upload,
-  cartElements,
   setModalProductStatus,
   userUid,
-}:ModalProductPropsType) {
+}: ModalProductPropsType) {
+  const { cartElements, upload } = shopStore;
   const { name, weight, price, description, colorie, ingredients } = item;
 
   return (
@@ -65,7 +63,7 @@ export default function ModalProduct({
             <button
               className={style["modal-btn"]}
               onClick={() =>
-                addItemCart(item, userUid, cartElements, upload, imgUrl)
+                addItemCart(item, userUid, cartElements.data,upload,  imgUrl)
               }
             >
               Добавить
@@ -74,10 +72,10 @@ export default function ModalProduct({
               <div className={style["modal-counter"]}>
                 <button
                   onClick={() => {
-                    cartElements.map((el, index) => {
+                    cartElements.data.map((el, index) => {
                       if (el.id === item.id) {
                         changeCountCartItem(
-                          cartElements,
+                          cartElements.data,
                           false,
                           userUid,
                           el,
@@ -90,12 +88,12 @@ export default function ModalProduct({
                 >
                   -
                 </button>
-                {cartElements.length === 0 ||
-                !cartElements.find((el) => el.id === item.id) ? (
+                {cartElements.data.length === 0 ||
+                !cartElements.data.find((el) => el.id === item.id) ? (
                   <div> 0 </div>
                 ) : (
                   <div>
-                    {cartElements.map((el) => {
+                    {cartElements.data.map((el) => {
                       if (el.id === item.id) {
                         return el.count;
                       }
@@ -105,21 +103,21 @@ export default function ModalProduct({
 
                 <button
                   onClick={() => {
-                    if (cartElements.length === 0) {
-                      addItemCart(item, userUid, cartElements, upload, imgUrl);
+                    if (cartElements.data.length === 0) {
+                      addItemCart(item, userUid, cartElements.data, upload,imgUrl);
                       return;
                     }
-                    const checkedItem = cartElements.find((el) => {
+                    const checkedItem = cartElements.data.find((el) => {
                       return el.id === item.id;
                     });
                     if (!checkedItem) {
-                      addItemCart(item, userUid, cartElements, upload, imgUrl);
+                      addItemCart(item, userUid, cartElements.data,upload, imgUrl);
                       return;
                     }
-                    cartElements.map((el, index) => {
+                    cartElements.data.map((el, index) => {
                       if (el.id === item.id) {
                         changeCountCartItem(
-                          cartElements,
+                          cartElements.data,
                           true,
                           userUid,
                           el,
