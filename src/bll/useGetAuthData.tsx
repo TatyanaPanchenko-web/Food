@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getData } from "@/services/FB";
 import { UserInfoType } from "@/types/index";
 
-export const getAuthData = () => {
+export const useGetAuthData = () => {
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
 
   const auth = getAuth();
@@ -39,6 +39,5 @@ export const getAuthData = () => {
   return {
     userInfo,
     userSignOut,
-    // addUserInfo: (data: UserInfoType) => setUserInfo(data),
   };
 };

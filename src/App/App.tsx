@@ -6,14 +6,14 @@ import {
   MainPage,
   ErrorPage,
 } from "@/pages";
-import { getAuthData } from "@/bll/auth";
+import { useGetAuthData } from "@/bll/useGetAuthData";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import style from "./app.module.scss";
 
 export default function App() {
   const [showHeader, setShowHeader] = useState<boolean>(true);
-  const { userInfo } = getAuthData();
+  const { userInfo } = useGetAuthData();
 
   return (
     <div className={style.app}>

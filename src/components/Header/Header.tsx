@@ -1,41 +1,24 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getAuthData } from "@/bll/auth";
+import { useGetAuthData } from "@/bll/useGetAuthData";
+import { useInfoAboutUser } from "@/bll/useInfoAboutUser";
 import logo from "@/assets/icons/logo.svg";
 import iconUser from "@/assets/icons/user.svg";
 import style from "./header.module.scss";
 
 export default function Header() {
-  const [isOpenInfo, setIsOpenInfo] = useState<boolean>(false);
-
-  const ref = useRef<HTMLDivElement>(null);
-
-  const { userInfo, userSignOut } = getAuthData();
-
-  useEffect(() => {
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
-
-  const handleClick = (e: MouseEvent) => {
-    if (ref.current && !ref?.current?.contains(e.target as Node)) {
-      setIsOpenInfo(false);
-    }
-  };
-
+  const { userInfo, userSignOut } = useGetAuthData();
+  const { isOpenInfo, loginRef, changeIsOpenInfo } = useInfoAboutUser();
   return (
     <header className={style.header}>
       <div className={style["header-container"]}>
         <Link to="/" className={style["header-logo"]}>
           <img src={logo} alt="logo" />
         </Link>
-        <div ref={ref} className={style["header-login"]}>
+        <div ref={loginRef} className={style["header-login"]}>
           {userInfo ? (
             <>
               <img
-                onClick={() => setIsOpenInfo((prev) => !prev)}
+                onClick={changeIsOpenInfo}
                 src={iconUser}
                 className={style["header-login-icon"]}
                 alt="user"
