@@ -13,12 +13,12 @@ type MainPagePropsType = {
 };
 
 export default function MainPage({ dataAuth }: MainPagePropsType) {
-  const { products, cartElements, status, activeTab, loadProductsAndCart } =
+  const { products, cartElements, activeTab, upload, loadProductsAndCart } =
     shopStore;
 
   useEffect(() => {
     loadProductsAndCart(activeTab, dataAuth?.uid);
-  }, [status, activeTab, dataAuth?.uid]);
+  }, [upload.status, activeTab, dataAuth?.uid]);
 
   return (
     <>

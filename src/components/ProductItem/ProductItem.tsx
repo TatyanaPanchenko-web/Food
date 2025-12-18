@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addItemCart } from "@/common/cartHandler";
 import ModalProduct from "@/components/ModalProduct/ModalProduct";
 import shopStore from "@/store/shopStore";
-import { DataProductsType, UploadType, NavItemType } from "@/types/index";
+import { DataProductsType } from "@/types/index";
 import style from "./productItem.module.scss";
 
 type ProductItemPropsType = {

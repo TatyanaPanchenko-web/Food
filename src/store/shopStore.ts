@@ -3,12 +3,12 @@ import { getData } from "@/services/FB";
 import { DataProductsType, NavItemType } from "@/types";
 
 type ProductsState = {
-  data: DataProductsType[] | null;
+  data: DataProductsType[];
   status: boolean;
 };
 
 type CartState = {
-  data: DataProductsType[] | null;
+  data: DataProductsType[];
   dataKeys: string[] | null;
   status: boolean;
 };

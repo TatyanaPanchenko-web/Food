@@ -50,3 +50,8 @@ export type NavItemType = {
   name: string;
   product_name: string;
 };
+
+export type UploadType = {
+  status: boolean;
+  dataKeys: string[] | null;
+};
