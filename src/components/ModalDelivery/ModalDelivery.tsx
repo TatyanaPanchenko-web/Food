@@ -1,60 +1,39 @@
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useMask } from "@react-input/mask";
-import { addOrderData } from "@/services/FB";
-import { deleteAllCart } from "@/services/FB";
-import shopStore from "@/store/shopStore";
-import { UserInfoType, ModalFormType } from "@/types/index";
+import { UserInfoType } from "@/types/index";
+import { useModalDeliveryForm } from "@/bll/useModalDeliveryForm";
 import style from "./modalDelivery.module.scss";
 
 type ModalDeliveryPropsType = {
-  setModalDeliveryStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  setSubmittedSuccess: React.Dispatch<React.SetStateAction<boolean>>;
   dataAuth: UserInfoType;
+  changeSubmittedSuccess: (value: boolean) => void;
+  changeModalDeliveryStatus: (value: boolean) => void;
 };
 
 export default function ModalDelivery({
-  setModalDeliveryStatus,
-  setSubmittedSuccess,
   dataAuth,
+  changeSubmittedSuccess,
+  changeModalDeliveryStatus,
 }: ModalDeliveryPropsType) {
-  const { cartElements, changeUpload } = shopStore;
-  const [choiceDelivery, setChoiceDelivery] = useState("carrier");
-
   const {
+    choiceDelivery,
+    setChoiceDelivery,
     register,
+    ref,
+    rest,
     handleSubmit,
-    formState: { errors },
-  } = useForm<ModalFormType>();
-
-  const { ref, ...rest } = register("phone", {
-    required: "Необходимо заполнить данное поле",
-    minLength: {
-      value: 19,
-      message: "Некорректный номер телефона",
-    },
+    errors,
+    onSubmit,
+    inputPhoneRef,
+  } = useModalDeliveryForm({
+    dataAuth,
+    changeSubmittedSuccess,
+    changeModalDeliveryStatus,
   });
-
-  const inputPhoneRef: React.RefObject<HTMLInputElement> = useMask({
-    mask: "+___ (__) ___-__-__",
-    replacement: { _: /\d/ },
-  });
-
-  const userUIdFB: string = dataAuth.uid;
-  const onSubmit: SubmitHandler<ModalFormType> = (data) => {
-    addOrderData(data, cartElements.data, userUIdFB);
-    changeUpload();
-    deleteAllCart(userUIdFB);
-    setModalDeliveryStatus(false);
-    setSubmittedSuccess(true);
-  };
-
   return (
     <div>
       <div
         className={style.modal}
         onClick={() => {
-          setModalDeliveryStatus(false);
+          changeModalDeliveryStatus(false);
         }}
       >
         <div
@@ -64,7 +43,7 @@ export default function ModalDelivery({
           <div
             className={style["modal-close"]}
             onClick={() => {
-              setModalDeliveryStatus(false);
+              changeModalDeliveryStatus(false);
             }}
           ></div>
 
@@ -86,7 +65,7 @@ export default function ModalDelivery({
                   },
                   maxLength: 30,
                   pattern: {
-                    value: /^[A-Za-z, А-Яа-я]+$/i,
+                    value: /^[A-Za-z, А-Яа-я0-9]+$/i,
                     message: "Поле содержит недопустимые символы",
                   },
                 })}

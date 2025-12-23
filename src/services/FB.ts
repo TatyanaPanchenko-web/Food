@@ -4,6 +4,8 @@ import {
   getDatabase,
   ref,
   onValue,
+  get,
+  set,
   push,
   update,
   remove,
@@ -77,20 +79,32 @@ export function addRegData<DataType extends User | RegFormType>(
 export function addOrderData(
   info: ModalFormType,
   cartItems: DataProductsType[],
-  uid: string
+  uid: string,
+  email: string
 ) {
-  const order = {
-    info: info,
-    cartItems: cartItems,
-  };
-  return update(ref(database, "order/" + uid), order);
+  const orderRef = ref(database, "order/" + uid);
+  const cartItemsRef = ref(database, "order/" + uid + "/cartItems");
+
+  get(cartItemsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        cartItems.forEach((item) => {
+          push(cartItemsRef, item);
+        });
+        
+      } else {
+        const order = {
+          info: { ...info, email },
+          cartItems: cartItems,
+        };
+        set(orderRef, order);
+      }
+    })
+    .catch((error) => {
+      console.error("Ошибка при записи заказа:", error);
+    });
 }
 
-export function updateOrderData(item: DataProductsType) {
-  const dataRef = ref(database, "/order");
-  const refKey = push(dataRef).key;
-  return push(dataRef, { ...item, key: refKey });
-}
 export function deleteAllCart(uid: string) {
   const dataRef = ref(database, "/cart/" + uid);
   return remove(dataRef);

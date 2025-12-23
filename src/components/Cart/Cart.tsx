@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { getItemsCount } from "@/common/cartHandler";
-import { deleteAllCart } from "@/services/FB";
-import { useNavigate } from "react-router-dom";
+import { useCartDetails } from "@/bll/useCartDetails";
 import CartItem from "../CartItem/CartItem";
 import ModalDelivery from "../ModalDelivery/ModalDelivery";
 import ModalSuccess from "../ModalSuccess/ModalSuccess";
@@ -14,30 +12,16 @@ type CartPropsType = {
 };
 
 export default function Cart({ dataAuth }: CartPropsType) {
-  const { cartElements, changeUpload } = shopStore;
-  const [modalDeliveryStatus, setModalDeliveryStatus] =
-    useState<boolean>(false);
-  const [submittedSuccess, setSubmittedSuccess] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const checkPromo = cartElements.data.filter(
-    (item) => item.promotion === true
-  );
-  const handleOrder = () => {
-    if (!dataAuth?.uid) {
-      navigate("/authorization");
-    }
-    setModalDeliveryStatus(true);
-  };
-
-  const handleDeleteCart = (uid: string | undefined) => {
-    if (!uid) {
-      localStorage.removeItem("cart");
-      changeUpload();
-      return;
-    }
-    deleteAllCart(uid);
-    changeUpload();
-  };
+  const { cartElements } = shopStore;
+  const {
+    modalDeliveryStatus,
+    changeModalDeliveryStatus,
+    submittedSuccess,
+    changeSubmittedSuccess,
+    checkPromo,
+    handleOrder,
+    handleDeleteCart,
+  } = useCartDetails(dataAuth);
 
   if (cartElements.data.length === 0) {
     return (
@@ -52,7 +36,7 @@ export default function Cart({ dataAuth }: CartPropsType) {
           <div className={style["cart-empty"]}>Тут пока пусто :(</div>
         </div>
         {submittedSuccess && (
-          <ModalSuccess setSubmittedSuccess={setSubmittedSuccess} />
+          <ModalSuccess changeSubmittedSuccess={changeSubmittedSuccess} />
         )}
       </div>
     );
@@ -108,9 +92,9 @@ export default function Cart({ dataAuth }: CartPropsType) {
 
       {modalDeliveryStatus && dataAuth?.uid && (
         <ModalDelivery
-          setModalDeliveryStatus={setModalDeliveryStatus}
-          setSubmittedSuccess={setSubmittedSuccess}
           dataAuth={dataAuth}
+          changeSubmittedSuccess={changeSubmittedSuccess}
+          changeModalDeliveryStatus={changeModalDeliveryStatus}
         />
       )}
     </div>

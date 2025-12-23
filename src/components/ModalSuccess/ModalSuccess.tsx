@@ -1,16 +1,17 @@
 import style from "./modalSuccess.module.scss";
 
 type ModalSuccessPropsType = {
-  setSubmittedSuccess: React.Dispatch<React.SetStateAction<boolean>>;
- 
-}; 
-export default function ModalSuccess({ setSubmittedSuccess }:ModalSuccessPropsType) {
+  changeSubmittedSuccess: (value: boolean) => void;
+};
+export default function ModalSuccess({
+  changeSubmittedSuccess,
+}: ModalSuccessPropsType) {
   return (
     <div>
       <div
         className={style.modal}
         onClick={() => {
-          setSubmittedSuccess(false);
+          changeSubmittedSuccess(false);
         }}
       >
         <div
@@ -20,7 +21,7 @@ export default function ModalSuccess({ setSubmittedSuccess }:ModalSuccessPropsTy
           <div
             className={style["modal-close"]}
             onClick={() => {
-              setSubmittedSuccess(false);
+              changeSubmittedSuccess(false);
             }}
           ></div>
           <div className={style["modal-title"]}>Спасибо!</div>
