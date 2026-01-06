@@ -1,7 +1,7 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 .cart {
   margin-top: 78px;
-  background-color: $accentTextColor;
+  background-color: vars.$accentTextColor;
   border-radius: 18px;
   align-self: start;
   min-width: 300px;
@@ -14,7 +14,7 @@
     max-width: 300px;
     padding: 24px 16px;
     .cart-top {
-      border-bottom: 1px solid $bgColor;
+      border-bottom: 1px solid vars.$bgColor;
       display: flex;
       justify-content: space-between;
       padding-bottom: 15px;
@@ -25,7 +25,7 @@
       }
       .cart-totalCount {
         padding: 2px 17px;
-        background-color: $btnColor;
+        background-color: vars.$btnColor;
         border-radius: 6px;
         align-self: center;
       }
@@ -62,10 +62,10 @@
         }
       }
       .cart-order {
-        @include btnStyle(
-          $accentTextColor,
-          $accentBgColor,
-          $secondaryaccentHoverColor
+        @include vars.btnStyle(
+          vars.$accentTextColor,
+          vars.$accentBgColor,
+          vars.$secondaryaccentHoverColor
         );
       }
       .cart-none {

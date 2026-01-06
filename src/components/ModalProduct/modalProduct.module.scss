@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 
 .modal {
   position: fixed;
@@ -65,7 +65,7 @@
         }
         .modal-info {
           padding-top: 4px;
-          color: $shadowColor;
+          color: vars.$shadowColor;
         }
       }
     }
@@ -75,10 +75,10 @@
       gap: 16px;
       .modal-btn {
         max-width: 276px;
-        @include btnStyle(
-          $accentTextColor,
-          $accentBgColor,
-          $secondaryaccentHoverColor
+        @include vars.btnStyle(
+          vars.$accentTextColor,
+          vars.$accentBgColor,
+          vars.$secondaryaccentHoverColor
         );
         @media (max-width: 576px) {
           max-width: 130px;
@@ -92,7 +92,7 @@
           align-items: center;
         }
         .modal-counter {
-          background-color: $btnColor;
+          background-color: vars.$btnColor;
           border-radius: 12px;
           display: flex;
           column-gap: 15px;

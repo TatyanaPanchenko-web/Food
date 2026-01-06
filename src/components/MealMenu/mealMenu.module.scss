@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 .meal-menu {
   margin-bottom: 100px;
   @media (max-width: 768px) {

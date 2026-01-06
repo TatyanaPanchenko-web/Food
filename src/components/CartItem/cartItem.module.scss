@@ -1,6 +1,6 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 .cart-item {
-  border-bottom: 1px solid $btnColor;
+  border-bottom: 1px solid vars.$btnColor;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -25,13 +25,13 @@
         max-width: 100px;
       }
       .item-weight {
-        color: $shadowColor;
+        color: vars.$shadowColor;
         margin-bottom: 10px;
       }
     }
   }
   .item-counter {
-    background-color: $btnColor;
+    background-color: vars.$btnColor;
     border-radius: 12px;
     display: flex;
     column-gap: 5px;

@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 
 .spinner-container {
   display: flex;
@@ -7,8 +7,8 @@
   .spinner {
     width: 60px;
     height: 60px;
-    border: 4px solid $btnColor;
-    border-top: 6px solid $accentBgColor;
+    border: 4px solid vars.$btnColor;
+    border-top: 6px solid vars.$accentBgColor;
     border-radius: 50%;
     animation: spin 2s linear infinite;
   }

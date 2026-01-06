@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 .app {
   display: flex;
   flex-direction: column;
@@ -6,6 +6,6 @@
   a {
     font-size: 14px;
     font-weight: 600;
-    color: $textColor;
+    color: vars.$textColor;
   }
 }

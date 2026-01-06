@@ -1,14 +1,13 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 .autorization {
   &-wrapper {
-    background-color: $bgColor;
+    background-color: vars.$bgColor;
     padding: 20px 16px;
   }
   &-title {
     text-align: center;
     font-size: 24px;
     font-weight: 600;
-    // margin-bottom: 18px;
     margin-bottom: 30px;
     font-family: "Nunito", sans-serif;
   }
@@ -20,27 +19,27 @@
     margin: auto;
     input {
       border-radius: 12px;
-      border: 1px solid $btnColor;
+      border: 1px solid vars.$btnColor;
       outline: none;
       padding: 12px;
       font-size: 12px;
     }
     input::placeholder {
-      color: $shadowColor;
+      color: vars.$shadowColor;
     }
 
     input[type="submit"] {
       font-family: "Nunito", sans-serif;
       margin-top: 15px;
-      background-color: $accentBgColor;
-      color: $accentTextColor;
+      background-color: vars.$accentBgColor;
+      color: vars.$accentTextColor;
       font-size: 16px;
       padding: 12px 0;
       height: auto;
       cursor: pointer;
       transition: background-color 0.3s linear;
       &:hover {
-        background-color: $secondaryaccentHoverColor;
+        background-color: vars.$secondaryaccentHoverColor;
       }
     }
     .errorField {

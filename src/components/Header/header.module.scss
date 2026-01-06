@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 
 .header {
   &-container {
@@ -34,7 +34,7 @@
         right: 0;
         width: auto;
         height: auto;
-        background-color: $bgColor;
+        background-color: vars.$bgColor;
         opacity: 0.85;
         border-radius: 10px;
         padding: 15px;
@@ -45,22 +45,22 @@
       }
       .header-signout-btn {
         margin-top: 15px;
-        @include btnStyle(
-          $accentTextColor,
-          $accentBgColor,
-          $secondaryaccentHoverColor
+        @include vars.btnStyle(
+          vars.$accentTextColor,
+          vars.$accentBgColor,
+          vars.$secondaryaccentHoverColor
         );
       }
     }
     .header-signin-btn {
       padding: 10px 20px;
-      @include btnStyle(
-        $accentTextColor,
-        $accentBgColor,
-        $secondaryaccentHoverColor
+      @include vars.btnStyle(
+        vars.$accentTextColor,
+        vars.$accentBgColor,
+        vars.$secondaryaccentHoverColor
       );
       a {
-        color: $accentTextColor;
+        color: vars.$accentTextColor;
         font-size: 14px;
         font-weight: 400;
       }

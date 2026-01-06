@@ -1,4 +1,4 @@
-@import "@/style/vars.scss";
+@use "@/style/vars.scss";
 
 .modal {
   position: fixed;
@@ -16,7 +16,7 @@
     padding: 40px 60px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 24px;
-    background-color: $bgColor;
+    background-color: vars.$bgColor;
     @media (max-width: 576px) {
       margin: 15px;
     }
@@ -44,7 +44,7 @@
         gap: 8px;
         input {
           border-radius: 12px;
-          border: 1px solid $btnColor;
+          border: 1px solid vars.$btnColor;
           outline: none;
           padding: 12px;
           font-size: 12px;
@@ -53,7 +53,7 @@
           }
         }
         input::placeholder {
-          color: $shadowColor;
+          color: vars.$shadowColor;
         }
         .modal-radio {
           padding-top: 8px;
@@ -62,7 +62,7 @@
         .modal-radio-item {
           display: flex;
           align-items: center;
-          color: $textColor;
+          color: vars.$textColor;
           margin-bottom: 8px;
         }
         label {
@@ -73,10 +73,10 @@
             width: 14px;
             height: 14px;
             padding: 0;
-            border: 2px solid $btnColor;
+            border: 2px solid vars.$btnColor;
             appearance: none;
             outline: none;
-            background-color: $accentTextColor;
+            background-color: vars.$accentTextColor;
             margin-right: 8px;
           }
           input[type="radio"]::after {
@@ -88,11 +88,11 @@
             height: 6px;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            background-color: $accentTextColor;
+            background-color: vars.$accentTextColor;
             cursor: pointer;
           }
           input[type="radio"]:checked::after {
-            background-color: $textColor;
+            background-color: vars.$textColor;
           }
         }
         .modal-choice-delivery {
@@ -120,15 +120,15 @@
         input[type="submit"] {
           font-family: "Nunito", sans-serif;
           margin-top: 15px;
-          background-color: $accentBgColor;
-          color: $accentTextColor;
+          background-color: vars.$accentBgColor;
+          color: vars.$accentTextColor;
           font-size: 12px;
           padding: 12px 0;
           height: auto;
           cursor: pointer;
           transition: background-color 0.3s linear;
           &:hover {
-            background-color: $secondaryaccentHoverColor;
+            background-color: vars.$secondaryaccentHoverColor;
           }
         }
         .errorField {
