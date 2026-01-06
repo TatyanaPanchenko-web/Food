@@ -1,7 +1,7 @@
 @use "@/style/vars.scss";
 .firstscreen {
   background-color: vars.$textColor;
-  background-image: url("@/assets/firstscreen/fastfood.webp");
+  background-image: url("/firstscreen/fastfood.webp");
   background-size: cover;
   margin-bottom: 35px;
   background-position: center;
