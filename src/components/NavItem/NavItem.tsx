@@ -10,7 +10,7 @@ export default function NavItem({ item }: NavItemPropsType) {
   const activeItem =
     activeTab.product_name === item["product_name"] ? style["active"] : "";
   return (
-    <div
+    <button
       className={`${style["nav-item"]} ${activeItem}`}
       onClick={() => {
         setActiveTab(item);
@@ -20,6 +20,6 @@ export default function NavItem({ item }: NavItemPropsType) {
         <img src={item.img} alt={item.name} />
       </div>
       <div className={style["item-name"]}>{item.name}</div>
-    </div>
+    </button>
   );
 }

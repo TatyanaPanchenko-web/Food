@@ -20,7 +20,6 @@
     input {
       border-radius: 12px;
       border: 1px solid vars.$btnColor;
-      outline: none;
       padding: 12px;
       font-size: 12px;
     }
@@ -51,8 +50,10 @@
     }
   }
   &-google {
-    text-align: center;
-    margin: 20px 0;
+    display: block;
+    margin: 20px auto;
+    background-color: transparent;
+    border: none;
     img {
       width: 24px;
       height: 24px;

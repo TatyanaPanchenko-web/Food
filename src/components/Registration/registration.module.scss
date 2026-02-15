@@ -24,7 +24,6 @@
       input {
         border-radius: 12px;
         border: 1px solid vars.$btnColor;
-        outline: none;
         padding: 12px;
         font-size: 12px;
       }
@@ -62,7 +61,6 @@
       padding: 12px 0;
       height: auto;
       border: none;
-      outline: none;
       border-radius: 12px;
       cursor: pointer;
       transition: background-color 0.3s linear;

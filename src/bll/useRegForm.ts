@@ -14,7 +14,9 @@ type errAuthType = {
   message: string;
 };
 
-export const useRegForm = (setRegdata:React.Dispatch<React.SetStateAction<boolean>>) => {
+export const useRegForm = (
+  setRegdata: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   const [errorData, setErrorData] = useState<string>("");
   const [errAuth, setErrAuth] = useState<errAuthType>({
     status: false,

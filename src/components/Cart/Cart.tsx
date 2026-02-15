@@ -65,14 +65,14 @@ export default function Cart({ dataAuth }: CartPropsType) {
           </div>
         </div>
         <div className={style["cart-bottom"]}>
-          <div
+          <button
             className={style["cart-delete"]}
             onClick={() => {
               handleDeleteCart(dataAuth?.uid);
             }}
           >
             Очистить корзину
-          </div>
+          </button>
           <div className={style["cart-total"]}>
             <span>Итого</span>
             <div className={style["cart-totalPrice"]}>

@@ -138,6 +138,7 @@ export default function Registration({ setRegdata }: RegistrationPropsType) {
         <label>
           <Controller
             name="promo"
+          
             control={control}
             rules={{ required: false }}
             render={({ field }) => (

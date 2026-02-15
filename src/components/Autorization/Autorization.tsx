@@ -49,9 +49,9 @@ export default function Autorization() {
 
           <input type="submit" value="Войти" />
         </form>
-        <div onClick={loginGoogle} className={style["autorization-google"]}>
+        <button onClick={loginGoogle} className={style["autorization-google"]}>
           <img src={iconGoogle} alt="google" title="Войти с помощью Google" />
-        </div>
+        </button>
       </div>
     </div>
   );

@@ -45,7 +45,6 @@
         input {
           border-radius: 12px;
           border: 1px solid vars.$btnColor;
-          outline: none;
           padding: 12px;
           font-size: 12px;
           @media (max-width: 300px) {
@@ -75,7 +74,6 @@
             padding: 0;
             border: 2px solid vars.$btnColor;
             appearance: none;
-            outline: none;
             background-color: vars.$accentTextColor;
             margin-right: 8px;
           }

@@ -41,6 +41,8 @@
         cursor: pointer;
         font-size: 11px;
         margin-bottom: 15px;
+        background-color: transparent;
+        border: none;
         &:before {
           content: "";
           background-image: url("/icons/delete.png");

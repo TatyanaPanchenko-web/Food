@@ -45,11 +45,11 @@ export default function Header() {
               )}
             </>
           ) : (
-            <div className={style["header-signin-btn"]}>
-              <Link to="/authorization" className="link">
+          
+              <Link to="/authorization"  className={style["header-signin-btn"]}>
                 Авторизация
               </Link>
-            </div>
+           
           )}
         </div>
       </div>
